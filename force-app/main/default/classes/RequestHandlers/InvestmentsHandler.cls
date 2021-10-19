@@ -5,8 +5,11 @@ public  class InvestmentsHandler implements IRequestHandler {
     }
 
 
-    public GenericResponse HandleRequest(string route, RestRequest request) {
-
+    public IResponse HandleRequest(string route, RestRequest request) {
+        string userId = apiroute.substringAfterLast('/');
+        if(request.httpMethod == 'GET'){
+            return GetUserInvestments(userId);
+        }
         return null;
     }
 

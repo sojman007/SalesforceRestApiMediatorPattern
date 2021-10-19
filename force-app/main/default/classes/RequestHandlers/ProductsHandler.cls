@@ -4,7 +4,10 @@ public  class ProductsHandler implements IRequesthandler {
     public string getType(){
         return 'Products Handler';
     }
-    public GenericResponse HandleRequest(string apiroute , RestRequest request){
+    public IResponse HandleRequest(string apiroute , RestRequest request){
+        if(request.httpMethod ='GET'){
+            return GetProducts();
+        }
         return null;
     }
 

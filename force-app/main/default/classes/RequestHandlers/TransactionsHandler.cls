@@ -1,6 +1,14 @@
 public class TransactionsHandler {
     
 
+    public IResponse handleRequest(string apiroute, RestRequest request){
+        string userId = apiroute.substringAfterLast('/');
+        if(request.httpMethod == 'GET'){
+            return GetUsersTransactions(userId);
+        }
+    }
+
+
     public string getType(){
         return 'Transactions Handler';
     }

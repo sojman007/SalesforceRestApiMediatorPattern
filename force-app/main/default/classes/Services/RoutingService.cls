@@ -27,12 +27,15 @@ public class RoutingService {
         }
         newRoute = newRoute.removeEnd('/');
         System.debug('new route ' +newRoute);
-        Type t = Type.forName(routeRegister.get(newRoute));
-        if(t!= null){
-            return (IRequestHandler)t.newInstance();
+        try{
+            Type t = Type.forName(routeRegister.get(newRoute));
+            if(t!= null){
+                return (IRequestHandler)t.newInstance();
+            }
+        }catch(Exception e){
+            return new NullRequestHandler();
         }
         return new NullRequestHandler();
-        
       }
 
 

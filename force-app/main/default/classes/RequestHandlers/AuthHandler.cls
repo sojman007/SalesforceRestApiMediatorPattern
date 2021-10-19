@@ -3,6 +3,15 @@ public  class AuthHandler implements IRequestHandler {
     //private string fieldsOfInterest = '';
 
     public GenericResponse HandleRequest(string apiRoute,RestRequest req){
+        
+        Map<String,Object> requestBody = (Map<string,object>)Json.deserializeUntyped(req.requestBody.toString());
+        
+        if(apiroute.contains('login')){
+            return Login(requestBody.get('email'), requestBody.get('password'));
+        }else if(apiroute.contains('create')){
+            return CreateAccount(JSON.deserializeStrict(Json.serialize(requestBody), CreateAccountModel.class));
+        }
+
         return null;
 
     }
